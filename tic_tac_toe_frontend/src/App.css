@@ -1,0 +1,205 @@
+/* Root Styles & Theme Variables */
+:root {
+  --ttt-bg: #fff;
+  --ttt-board-bg: #f8f9fa;
+  --ttt-board-border: #e9ecef;
+  --ttt-shadow: 0 4px 32px rgba(25, 118, 210, 0.07);
+  --ttt-primary: #1976d2;
+  --ttt-secondary: #424242;
+  --ttt-accent: #ffd600;
+  --ttt-x-color: #1976d2;
+  --ttt-o-color: #ffd600;
+  --ttt-draw-color: #e0e0e0;
+  --ttt-font: "Inter", "Segoe UI", Arial, sans-serif;
+}
+
+body, .ttt-app {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--ttt-bg);
+  color: var(--ttt-secondary);
+  font-family: var(--ttt-font);
+}
+
+.ttt-app {
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background: var(--ttt-bg);
+}
+
+.ttt-main {
+  background: var(--ttt-board-bg);
+  border-radius: 22px;
+  box-shadow: var(--ttt-shadow);
+  padding: 32px 32px 24px 32px;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 300px;
+}
+
+.ttt-scoreboard {
+  width: 100%;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: 1.5px;
+}
+
+.score-divider {
+  color: var(--ttt-secondary);
+  opacity: 0.7;
+  font-size: 18px;
+}
+
+.ttt-status {
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: 500;
+  min-height: 32px;
+  text-align: center;
+  letter-spacing: 0.5px;
+  transition: color 0.2s;
+}
+
+/* Game Board */
+.ttt-board {
+  display: grid;
+  grid-template-columns: repeat(3, 68px);
+  grid-template-rows: repeat(3, 68px);
+  gap: 10px;
+  background: var(--ttt-board-bg);
+  border-radius: 14px;
+  box-shadow: 0px 4px 24px 2px #1976d209;
+  margin-bottom: 22px;
+  border: 2px solid var(--ttt-board-border);
+  padding: 14px;
+}
+
+.ttt-square {
+  width: 68px;
+  height: 68px;
+  background: #fff;
+  border: 2px solid var(--ttt-board-border);
+  border-radius: 10px;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--ttt-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    background 0.21s,
+    color 0.21s,
+    transform 0.14s;
+  box-shadow: 0 1px 4px #0001;
+  outline: none;
+  position: relative;
+  will-change: transform;
+}
+
+.ttt-square:disabled {
+  cursor: default;
+  opacity: 0.75;
+}
+
+.ttt-symbol {
+  display: inline-block;
+  transition: color 0.15s;
+}
+
+.pop {
+  animation: ttt-pop 180ms cubic-bezier(.4,2,.45,.9);
+}
+.win-pop {
+  animation: ttt-win-pop 250ms cubic-bezier(.4,2,.45,.9);
+}
+@keyframes ttt-pop {
+  0% { transform: scale(0.96);}
+  70%{ transform: scale(1.12);}
+  100%{ transform: scale(1);}
+}
+@keyframes ttt-win-pop {
+  0% { transform: scale(1);}
+  60% { transform: scale(1.18);}
+  100% { transform: scale(1.08);}
+}
+
+/* Control Buttons below board */
+.ttt-controls {
+  margin-top: 8px;
+  text-align: center;
+  width: 100%;
+}
+
+.ttt-btn {
+  font-size: 1rem;
+  padding: 10px 32px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  background: var(--ttt-primary);
+  color: #fff;
+  margin: 0 4px;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.09s;
+  box-shadow: 0 2px 8px #1976d233;
+  cursor: pointer;
+}
+
+.ttt-btn:active {
+  background: #1151a6;
+  transform: translateY(1px) scale(.99);
+}
+.ttt-btn-reset {
+  background: var(--ttt-accent);
+  color: var(--ttt-secondary);
+  font-weight: 700;
+  border: 1.5px solid var(--ttt-secondary);
+}
+.ttt-btn-reset:active {
+  background: #ffe57f;
+}
+
+/* Footer */
+.ttt-footer {
+  margin-top: 22px;
+  font-size: 0.98rem;
+  opacity: 0.55;
+  user-select: none;
+}
+
+/* Responsive Design */
+@media (max-width: 430px) {
+  .ttt-main {
+    max-width: 97vw;
+    min-width: 0;
+    padding: 8vw 3vw 12vw 3vw;
+  }
+  .ttt-board {
+    grid-template-columns: repeat(3, 19vw);
+    grid-template-rows: repeat(3, 19vw);
+    gap: 2.5vw;
+    min-width: 0;
+    border-radius: 8px;
+    padding: 2vw;
+  }
+  .ttt-square {
+    width: 19vw;
+    height: 19vw;
+    font-size: 8vw;
+    min-width: 0; min-height: 0;
+  }
+}
+
+@media (max-width: 350px) {
+  .ttt-board { gap: 2vw; }
+  .ttt-main { padding: 0vw 0vw 7vw 0vw; }
+}
